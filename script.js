@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
             
             // 2. Update Nomor Kursi (Menggunakan ID)
             if (elemenKursi) {
-                elemenKursi.innerText = "Nomor Kursi: " + tamuDitemukan.id;
+                elemenKursi.innerText = "Nomor Meja: " + tamuDitemukan.id;
             }
         } else {
             // Fallback: Jika tidak ketemu di JSON tapi ada di URL

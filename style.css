@@ -25,7 +25,7 @@ h1, h2, h3, h4 {
 #Pembuka {
   /* Pastikan gambar ada di folder img/ */
   background: linear-gradient(to bottom, rgba(15, 23, 42, 0.3), var(--primary-color)), 
-              url('img/DSC_1364.jpg') no-repeat center center/cover;
+              url('img/unnamed.jpg') no-repeat center center/cover;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -191,7 +191,16 @@ section {
     transition: all 0.3s ease;
 }
 
+/* Menambahkan background ke section setelah pembuka */
+#event-details{
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.3), var(--primary-color)), 
+              url('img/DSC_1291.jpg') no-repeat center center/cover;
+}
 
+#about-us{
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.3), var(--primary-color)), 
+              url('img/DSC_1364.jpg') no-repeat center center/cover;
+}
 
 .sponsor-logo:hover {
     filter: none;          /* Menampilkan warna asli saat di-hover */
