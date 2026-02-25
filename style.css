@@ -207,3 +207,53 @@ section {
     opacity: 1;
     transform: scale(1.1); /* Efek membesar sedikit */
 }
+
+/* --- Dekorasi Bola di Sisi Halaman --- */
+.bola-dekorasi {
+  position: fixed;
+  top: 50%;
+  font-size: 5rem; /* Ukuran bola */
+  z-index: 1; /* Berada di bawah konten glass-card */
+  pointer-events: none; /* Agar tidak menghalangi jika pengguna melakukan klik */
+  opacity: 1; /* Transparansi bola agar terlihat samar dan elegan */
+  filter: grayscale(100%); /* Membuat warnanya menyatu dengan tema gelap */
+  animation: floatBall 6s ease-in-out infinite;
+}
+
+.bola-kiri {
+  left: 3%; /* Jarak dari sisi kiri */
+}
+
+.bola-kanan {
+  right: 3%; /* Jarak dari sisi kanan */
+  animation-delay: 3s; /* Memberikan jeda waktu agar gerakan kiri dan kanan tidak bersamaan */
+}
+
+/* Animasi mengambang dan berputar sedikit */
+@keyframes floatBall {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-70%) rotate(15deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+}
+
+/* Sesuaikan ukuran bola di layar kecil (HP) agar tetap muncul tapi tidak menutupi konten */
+@media (max-width: 992px) {
+  .bola-dekorasi {
+    font-size: 2.5rem; /* Ukuran bola diperkecil untuk mobile */
+    opacity: 1; /* Dibuat sedikit lebih transparan */
+  }
+  
+  .bola-kiri {
+    left: 2%; /* Jarak disesuaikan untuk layar sempit */
+  }
+
+  .bola-kanan {
+    right: 2%; /* Jarak disesuaikan untuk layar sempit */
+  }
+}
