@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const paramId = urlParams.get('id');   // Contoh: ?id=01
   
   const elemenTamu = document.getElementById("Tamu");
-  const elemenKursi = document.getElementById("NomorKursi"); // Elemen baru untuk kursi
+  const elemenKursi = document.getElementById("NomorUndangan"); // Elemen baru untuk kursi
 
   // Hanya jalankan jika ada parameter di URL
   if (paramNama || paramId) {
@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
             
             // 2. Update Nomor Kursi (Menggunakan ID)
             if (elemenKursi) {
-                elemenKursi.innerText = "Nomor Meja: " + tamuDitemukan.id;
             }
         } else {
             // Fallback: Jika tidak ketemu di JSON tapi ada di URL

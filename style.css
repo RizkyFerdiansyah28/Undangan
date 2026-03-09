@@ -22,7 +22,7 @@ h1, h2, h3, h4 {
 }
 
 /* --- Hero Section / Pembuka --- */
-#Pembuka {
+#Pembuka, #sponsors {
   /* Pastikan gambar ada di folder img/ */
   background: linear-gradient(to bottom, rgba(15, 23, 42, 0.3), var(--primary-color)), 
               url('img/unnamed.jpg') no-repeat center center/cover;
@@ -208,52 +208,180 @@ section {
     transform: scale(1.1); /* Efek membesar sedikit */
 }
 
-/* --- Dekorasi Bola di Sisi Halaman --- */
-.bola-dekorasi {
-  position: fixed;
-  top: 50%;
-  font-size: 5rem; /* Ukuran bola */
-  z-index: 1; /* Berada di bawah konten glass-card */
-  pointer-events: none; /* Agar tidak menghalangi jika pengguna melakukan klik */
-  opacity: 1; /* Transparansi bola agar terlihat samar dan elegan */
-  filter: grayscale(100%); /* Membuat warnanya menyatu dengan tema gelap */
-  animation: floatBall 6s ease-in-out infinite;
+
+/* =========================================
+   BINGKAI SECTION: TEMA LAPANGAN SEPAKBOLA
+   ========================================= */
+
+section {
+    position: relative;
+    /* Memastikan bingkai tidak keluar dari section */
+    overflow: hidden; 
 }
 
-.bola-kiri {
-  left: 3%; /* Jarak dari sisi kiri */
+/* 1. Garis Pinggir, Lingkaran Tengah, dan Garis Tengah Lapangan */
+section::before {
+    content: '';
+    position: absolute;
+    /* Jarak bingkai dari ujung layar */
+    top: 20px; 
+    left: 20px; 
+    right: 20px; 
+    bottom: 20px;
+    
+    /* Garis pinggir lapangan (Touchline) */
+    border: 2px solid rgba(197, 160, 89, 0.4); 
+    border-radius: 8px;
+    
+    /* Agar garis tidak menghalangi kursor saat mengklik tombol/teks */
+    pointer-events: none; 
+    z-index: 0;
+    
+    background: 
+        /* Titik Tengah Lapangan (Center spot) */
+        radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.4) 5px, transparent 6px),
+        
+        /* Lingkaran Tengah Lapangan (Center circle) */
+        radial-gradient(circle at 50% 50%, transparent 60px, rgba(197, 160, 89, 0.4) 61px, rgba(197, 160, 89, 0.4) 63px, transparent 64px),
+        
+        /* Garis Tengah Lapangan (Half-way line) */
+        linear-gradient(to bottom, transparent calc(50% - 1px), rgba(197, 160, 89, 0.4) calc(50% - 1px), rgba(197, 160, 89, 0.4) calc(50% + 1px), transparent calc(50% + 1px));
 }
 
-.bola-kanan {
-  right: 3%; /* Jarak dari sisi kanan */
-  animation-delay: 3s; /* Memberikan jeda waktu agar gerakan kiri dan kanan tidak bersamaan */
+/* 2. Area Kotak Penalti Atas & Bawah */
+section::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%; /* Lebar kotak penalti */
+    max-width: 400px; /* Maksimal lebar untuk layar besar */
+    pointer-events: none;
+    z-index: 0;
+    
+    /* Menggambar garis kotak penalti menggunakan gradient linear */
+    background: 
+        /* Kotak Penalti Atas */
+        linear-gradient(to bottom, transparent 0, transparent 40px, rgba(197, 160, 89, 0.4) 40px, rgba(197, 160, 89, 0.4) 42px, transparent 42px) no-repeat top center / 100% 42px,
+        linear-gradient(to right, rgba(197, 160, 89, 0.4) 2px, transparent 2px) no-repeat top left / 100% 42px,
+        linear-gradient(to left, rgba(197, 160, 89, 0.4) 2px, transparent 2px) no-repeat top right / 100% 42px,
+        
+        /* Kotak Penalti Bawah */
+        linear-gradient(to top, transparent 0, transparent 40px, rgba(197, 160, 89, 0.4) 40px, rgba(197, 160, 89, 0.4) 42px, transparent 42px) no-repeat bottom center / 100% 42px,
+        linear-gradient(to right, rgba(197, 160, 89, 0.4) 2px, transparent 2px) no-repeat bottom left / 100% 42px,
+        linear-gradient(to left, rgba(197, 160, 89, 0.4) 2px, transparent 2px) no-repeat bottom right / 100% 42px;
 }
 
-/* Animasi mengambang dan berputar sedikit */
-@keyframes floatBall {
-  0% {
-    transform: translateY(-50%) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-70%) rotate(15deg);
-  }
-  100% {
-    transform: translateY(-50%) rotate(0deg);
-  }
+/* Pastikan elemen Glass-card atau konten selalu berada di atas bingkai */
+.glass-card, .container {
+    position: relative;
+    z-index: 2;
 }
 
-/* Sesuaikan ukuran bola di layar kecil (HP) agar tetap muncul tapi tidak menutupi konten */
-@media (max-width: 992px) {
-  .bola-dekorasi {
-    font-size: 2.5rem; /* Ukuran bola diperkecil untuk mobile */
-    opacity: 1; /* Dibuat sedikit lebih transparan */
-  }
-  
-  .bola-kiri {
-    left: 2%; /* Jarak disesuaikan untuk layar sempit */
-  }
+/* =========================================
+   BINGKAI SECTION: TEMA LAPANGAN SEPAKBOLA (REVISI LEBIH JELAS)
+   ========================================= */
 
-  .bola-kanan {
-    right: 2%; /* Jarak disesuaikan untuk layar sempit */
-  }
+/* Variabel khusus untuk warna garis lapangan agar mudah diatur */
+:root {
+    --line-color: rgba(197, 160, 89, 0.85); /* Opacity dinaikkan menjadi 85% */
+    --line-thick: 3px; /* Ketebalan garis ditambah */
+}
+
+section {
+    position: relative;
+    overflow: hidden; 
+}
+
+/* 1. Garis Pinggir, Lingkaran Tengah, dan Garis Tengah Lapangan */
+section::before {
+    content: '';
+    position: absolute;
+    top: 15px; 
+    left: 15px; 
+    right: 15px; 
+    bottom: 15px;
+    
+    /* Garis pinggir lapangan (Touchline) */
+    border: var(--line-thick) solid var(--line-color); 
+    border-radius: 12px;
+    
+    /* Efek cahaya/glow agar garis lebih terlihat di background gelap */
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.3), inset 0 0 10px rgba(197, 160, 89, 0.3);
+    
+    pointer-events: none; 
+    z-index: 1; /* Pastikan di atas background tapi di bawah konten */
+    
+    background: 
+        /* Titik Tengah Lapangan */
+        radial-gradient(circle at 50% 50%, var(--line-color) 6px, transparent 7px),
+        
+        /* Lingkaran Tengah Lapangan */
+        radial-gradient(circle at 50% 50%, transparent 65px, var(--line-color) 66px, var(--line-color) calc(66px + var(--line-thick)), transparent calc(67px + var(--line-thick))),
+        
+        /* Garis Tengah Lapangan */
+        linear-gradient(to bottom, transparent calc(50% - (var(--line-thick)/2)), var(--line-color) calc(50% - (var(--line-thick)/2)), var(--line-color) calc(50% + (var(--line-thick)/2)), transparent calc(50% + (var(--line-thick)/2)));
+}
+
+/* 2. Area Kotak Penalti Atas & Bawah */
+section::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%; 
+    max-width: 400px; 
+    pointer-events: none;
+    z-index: 1;
+    
+    background: 
+        /* Kotak Penalti Atas */
+        linear-gradient(to bottom, transparent 0, transparent 45px, var(--line-color) 45px, var(--line-color) calc(45px + var(--line-thick)), transparent calc(45px + var(--line-thick))) no-repeat top center / 100% calc(45px + var(--line-thick)),
+        linear-gradient(to right, var(--line-color) var(--line-thick), transparent var(--line-thick)) no-repeat top left / 100% calc(45px + var(--line-thick)),
+        linear-gradient(to left, var(--line-color) var(--line-thick), transparent var(--line-thick)) no-repeat top right / 100% calc(45px + var(--line-thick)),
+        
+        /* Kotak Penalti Bawah */
+        linear-gradient(to top, transparent 0, transparent 45px, var(--line-color) 45px, var(--line-color) calc(45px + var(--line-thick)), transparent calc(45px + var(--line-thick))) no-repeat bottom center / 100% calc(45px + var(--line-thick)),
+        linear-gradient(to right, var(--line-color) var(--line-thick), transparent var(--line-thick)) no-repeat bottom left / 100% calc(45px + var(--line-thick)),
+        linear-gradient(to left, var(--line-color) var(--line-thick), transparent var(--line-thick)) no-repeat bottom right / 100% calc(45px + var(--line-thick));
+}
+
+/* Pastikan elemen Glass-card atau konten selalu berada di atas garis lapangan */
+.glass-card, .container {
+    position: relative;
+    z-index: 5;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT (UNTUK MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+    section::before {
+        top: 8px; left: 8px; right: 8px; bottom: 8px;
+        
+        background: 
+            radial-gradient(circle at 50% 50%, var(--line-color) 4px, transparent 5px),
+            radial-gradient(circle at 50% 50%, transparent 45px, var(--line-color) 46px, var(--line-color) calc(46px + var(--line-thick)), transparent calc(47px + var(--line-thick))),
+            linear-gradient(to bottom, transparent calc(50% - (var(--line-thick)/2)), var(--line-color) calc(50% - (var(--line-thick)/2)), var(--line-color) calc(50% + (var(--line-thick)/2)), transparent calc(50% + (var(--line-thick)/2)));
+    }
+
+    section::after {
+        top: 8px; bottom: 8px;
+        width: 85%;
+        
+        background: 
+            /* Kotak Penalti Atas */
+            linear-gradient(to bottom, transparent 0, transparent 35px, var(--line-color) 35px, var(--line-color) calc(35px + var(--line-thick)), transparent calc(35px + var(--line-thick))) no-repeat top center / 100% calc(35px + var(--line-thick)),
+            linear-gradient(to right, var(--line-color) var(--line-thick), transparent var(--line-thick)) no-repeat top left / 100% calc(35px + var(--line-thick)),
+            linear-gradient(to left, var(--line-color) var(--line-thick), transparent var(--line-thick)) no-repeat top right / 100% calc(35px + var(--line-thick)),
+            
+            /* Kotak Penalti Bawah */
+            linear-gradient(to top, transparent 0, transparent 35px, var(--line-color) 35px, var(--line-color) calc(35px + var(--line-thick)), transparent calc(35px + var(--line-thick))) no-repeat bottom center / 100% calc(35px + var(--line-thick)),
+            linear-gradient(to right, var(--line-color) var(--line-thick), transparent var(--line-thick)) no-repeat bottom left / 100% calc(35px + var(--line-thick)),
+            linear-gradient(to left, var(--line-color) var(--line-thick), transparent var(--line-thick)) no-repeat bottom right / 100% calc(35px + var(--line-thick));
+    }
 }
