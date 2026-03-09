@@ -413,3 +413,16 @@ body.locked {
     opacity: 0;
     pointer-events: none; /* Agar tidak bisa diklik lagi setelah hilang */
 }
+
+/* Mengubah logo berwarna menjadi warna emas (#c5a059) */
+.pelindo-gold {
+    filter: brightness(0) saturate(100%) invert(68%) sepia(25%) saturate(1135%) hue-rotate(357deg) brightness(89%) contrast(90%);
+}
+
+/* Memastikan logo tetap berwarna emas saat di-hover 
+   (karena .sponsor-logo:hover secara default memiliki filter: none) */
+.sponsor-logo.pelindo-gold:hover {
+    filter: brightness(0) saturate(100%) invert(68%) sepia(25%) saturate(1135%) hue-rotate(357deg) brightness(89%) contrast(90%);
+    opacity: 1;
+    transform: scale(1.1);
+}
