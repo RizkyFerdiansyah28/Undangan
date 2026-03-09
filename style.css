@@ -385,3 +385,31 @@ section::after {
             linear-gradient(to left, var(--line-color) var(--line-thick), transparent var(--line-thick)) no-repeat bottom right / 100% calc(35px + var(--line-thick));
     }
 }
+
+/* =========================================
+   COVER UNDANGAN (HALAMAN DEPAN)
+   ========================================= */
+/* Kunci scroll saat cover masih tertutup */
+body.locked {
+    overflow: hidden;
+}
+
+.cover-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* Background cover, sesuaikan dengan gambar yang diinginkan */
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), var(--primary-color)), 
+                url('img/unnamed.jpg') no-repeat center center/cover;
+    z-index: 9999; /* Pastikan selalu berada paling atas */
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+/* Animasi cover bergeser ke atas saat dibuka */
+.cover-overlay.slide-up {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none; /* Agar tidak bisa diklik lagi setelah hilang */
+}

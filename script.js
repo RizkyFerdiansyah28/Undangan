@@ -31,56 +31,96 @@ document.addEventListener("DOMContentLoaded", function () {
   // ---------------------------------------------------------
   // 2. LOGIKA DATA TAMU & NOMOR KURSI DARI JSON
   // ---------------------------------------------------------
-  
-  // Ambil parameter dari URL browser
   const urlParams = new URLSearchParams(window.location.search);
-  const paramNama = urlParams.get('to'); // Contoh: ?to=Amba
-  const paramId = urlParams.get('id');   // Contoh: ?id=01
+  const paramNama = urlParams.get('to'); 
+  const paramId = urlParams.get('id');   
   
   const elemenTamu = document.getElementById("Tamu");
-  const elemenKursi = document.getElementById("NomorUndangan"); // Elemen baru untuk kursi
+  const elemenTamuCover = document.getElementById("NamaTamuCover"); // Elemen nama di Cover
+  const elemenKursi = document.getElementById("NomorUndangan"); 
 
-  // Hanya jalankan jika ada parameter di URL
   if (paramNama || paramId) {
-    // Ambil file JSON
     fetch('tamu.json')
       .then(response => {
-        if (!response.ok) {
-            throw new Error("Gagal mengambil file JSON");
-        }
+        if (!response.ok) throw new Error("Gagal mengambil file JSON");
         return response.json();
       })
       .then(dataTamu => {
         let tamuDitemukan = null;
 
-        // Cek apakah pencarian berdasarkan ID atau Nama
         if (paramId) {
             tamuDitemukan = dataTamu.find(t => t.id === paramId);
         } else if (paramNama) {
             tamuDitemukan = dataTamu.find(t => t.name.toLowerCase() === paramNama.toLowerCase());
         }
 
-        // Jika data ditemukan di JSON
         if (tamuDitemukan) {
-            // 1. Update Nama
             elemenTamu.innerText = tamuDitemukan.name;
-            
-            // 2. Update Nomor Kursi (Menggunakan ID)
-            if (elemenKursi) {
-            }
+            if(elemenTamuCover) elemenTamuCover.innerText = tamuDitemukan.name; // Update nama di cover
+            if (elemenKursi) { } // Logika kursi dibiarkan kosong sesuai kode asli Anda
         } else {
-            // Fallback: Jika tidak ketemu di JSON tapi ada di URL
             if (paramNama) {
                 elemenTamu.innerText = paramNama;
+                if(elemenTamuCover) elemenTamuCover.innerText = paramNama;
             }
-            // Kosongkan nomor kursi jika tamu tidak terdaftar
             if (elemenKursi) elemenKursi.innerText = "";
         }
       })
       .catch(error => {
         console.error('Error:', error);
-        // Fallback error
-        if (paramNama) elemenTamu.innerText = paramNama;
+        if (paramNama) {
+            elemenTamu.innerText = paramNama;
+            if(elemenTamuCover) elemenTamuCover.innerText = paramNama;
+        }
       });
+  } else {
+      // Jika tidak ada parameter URL, beri teks default
+      if(elemenTamuCover) elemenTamuCover.innerText = "Tamu Spesial";
+  }
+
+  // ---------------------------------------------------------
+  // 3. LOGIKA BUKA UNDANGAN & PEMUTAR MUSIK LOKAL
+  // ---------------------------------------------------------
+  const btnBukaUndangan = document.getElementById("btnBukaUndangan");
+  const cover = document.getElementById("cover");
+  const musicToggle = document.getElementById("musicToggle");
+  const localAudio = document.getElementById("localAudio");
+  let isPlaying = false;
+
+  // Aksi ketika tombol "Buka Undangan" diklik
+  if (btnBukaUndangan && cover) {
+    btnBukaUndangan.addEventListener("click", function () {
+      // 1. Jalankan animasi cover bergeser ke atas
+      cover.classList.add("slide-up");
+      
+      // 2. Buka kunci scroll pada body
+      document.body.classList.remove("locked");
+
+      // 3. Putar musik secara otomatis
+      if (localAudio) {
+        localAudio.play().then(() => {
+            isPlaying = true;
+            if (musicToggle) {
+                musicToggle.innerHTML = '<i class="bi bi-pause-fill fs-4"></i>'; 
+            }
+        }).catch((error) => {
+            console.log("Browser memblokir autoplay audio:", error);
+        });
+      }
+    });
+  }
+
+  // Aksi ketika tombol musik mengambang diklik (Pause / Play)
+  if (musicToggle && localAudio) {
+    musicToggle.addEventListener("click", function () {
+      if (isPlaying) {
+        localAudio.pause();
+        musicToggle.innerHTML = '<i class="bi bi-music-note-beamed fs-4"></i>'; 
+      } else {
+        localAudio.play();
+        musicToggle.innerHTML = '<i class="bi bi-pause-fill fs-4"></i>'; 
+      }
+      isPlaying = !isPlaying;
+    });
   }
 });
