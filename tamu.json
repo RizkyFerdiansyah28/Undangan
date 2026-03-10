@@ -1,21 +1,17 @@
 [
-
-    {
-        "id": "01",
-        "name": "Novel Leonardo"
-    },
-
-    {
-        "id": "02",
-        "name": "Michael Victor Sianipar"
-    },
-
-    {
-        "id": "03",
-        "name": "Giovanni Nadine Hariyanto"
-    },
-    {
-        "id": "04",
-        "name": "Rieldo Najogi Fransisco Tampubolon"
-    }
+    { "id": "01", "name": "Novel Leonardo" },
+    { "id": "02", "name": "Michael Victor Sianipar" },
+    { "id": "03", "name": "Giovanni Nadine Hariyanto" },
+    { "id": "04", "name": "Rieldo Najogi Fransisco Tampubolon" },
+    { "id": "05", "name": "Bank Mandiri" },
+    { "id": "06", "name": "Pelindo" },
+    { "id": "07", "name": "Korman" },
+    { "id": "08", "name": "Sinar Anugerah Energi" },
+    { "id": "09", "name": "RG Apparel" },
+    { "id": "10", "name": "Chugoku Marine Paints, Ltd."},
+    { "id": "11", "name": "PT Pertamina Patra Niaga" },
+    { "id": "12", "name": "Kece Express Surabaya" },
+    { "id": "13", "name": "McEasy" },
+    { "id": "14", "name": "PT Teru Tri Tunggal" }
+  
 ]
