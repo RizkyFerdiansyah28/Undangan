@@ -6,13 +6,16 @@
     { "id": "05", "name": "Bank Mandiri" },
     { "id": "06", "name": "Pelindo" },
     { "id": "07", "name": "Korman" },
-    { "id": "08", "name": "Sinar Anugerah Energi" },
+    { "id": "08", "name": "Sinar Anugerah Energy" },
     { "id": "09", "name": "RG Apparel" },
     { "id": "10", "name": "Chugoku Marine Paints, Ltd."},
     { "id": "11", "name": "PT Pertamina Patra Niaga" },
     { "id": "12", "name": "Kece Express Surabaya" },
     { "id": "13", "name": "McEasy" },
     { "id": "14", "name": "PT Teru Tri Tunggal" },
-    { "id": "15", "name": "PT Jatim Petroleum Surabaya" }
+    { "id": "15", "name": "PT Jatim Petroleum Surabaya" },
+    { "id": "16", "name": "PT Emosi Jiwaku Media" },
+    { "id": "17", "name": "Suara Surabaya Media" }
+
   
 ]
