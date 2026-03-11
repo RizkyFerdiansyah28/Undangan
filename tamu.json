@@ -51,7 +51,7 @@
     { "id": "50", "name": "Didik" },
     { "id": "51", "name": "Wati" },
     { "id": "52", "name": "Nanang Sudarto" },
-    { "id": "53", "name": "Antin Krisna" },
+    { "id": "53", "name": "Antin Krisna" }, 
     { "id": "54", "name": "Rical Patola" },
     { "id": "55", "name": "Johni Patola" },
     { "id": "56", "name": "Darwita Darwis" },
@@ -75,5 +75,7 @@
     { "id": "74", "name": "Ervin " },
     { "id": "75", "name": "Sonia" },
     { "id": "76", "name": "Nur Mahaytun" },
-    { "id": "77", "name": "Efendi" }
+    { "id": "77", "name": "Efendi" },
+    { "id": "78", "name": "Wings Surya" },
+    { "id": "79", "name": "Telkom Indonesia" }
 ]
