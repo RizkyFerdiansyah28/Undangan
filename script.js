@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   } else {
       // Jika tidak ada parameter URL, beri teks default
-      if(elemenTamuCover) elemenTamuCover.innerText = "You are Invited";
+      if(elemenTamuCover) elemenTamuCover.innerText = "Tamu Spesial";
   }
 
   // ---------------------------------------------------------
